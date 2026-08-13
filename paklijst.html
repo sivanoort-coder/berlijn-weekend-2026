@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paklijst FINAL — Berlijn weekend</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #6b6b6b;
+    --line: #e2e2e2;
+    --accent: #b5342c;
+    --accent-soft: #fbeceb;
+    --bg: #fdfcfb;
+    --card: #ffffff;
+    --done: #2f6b3a;
+    --done-soft: #eaf3ec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    padding-bottom: 60px;
+  }
+  header {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--card);
+  }
+  header h1 { margin: 0 0 4px; font-size: 21px; }
+  header p { margin: 0; color: var(--sub); font-size: 13.5px; }
+  main { max-width: 640px; margin: 0 auto; padding: 20px 16px; }
+
+  .urgent {
+    background: var(--accent-soft);
+    border: 1px solid #edc9c6;
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #7a2620;
+    margin-bottom: 24px;
+  }
+  .urgent b { display: block; margin-bottom: 4px; }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .tab.active {
+    background: var(--ink);
+    color: white;
+    border-color: var(--ink);
+  }
+  .progress {
+    font-size: 12px;
+    color: var(--sub);
+    margin-top: 2px;
+  }
+
+  .person-panel { display: none; }
+  .person-panel.active { display: block; }
+
+  ul.items { list-style: none; margin: 0; padding: 0; }
+  li.item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  li.item.done .label { text-decoration: line-through; color: var(--sub); }
+  .box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--line);
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    user-select: none;
+  }
+  li.item.done .box {
+    background: var(--done);
+    border-color: var(--done);
+  }
+  .item-body { flex: 1; }
+  .label { font-size: 14.5px; }
+  .signoff {
+    font-size: 11.5px;
+    color: var(--done);
+    margin-top: 2px;
+    display: none;
+  }
+  li.item.done .signoff { display: block; }
+  .who-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .who-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--card);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--sub);
+  }
+  .who-btn.selected {
+    background: var(--done);
+    color: white;
+    border-color: var(--done);
+  }
+  .section-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--sub);
+    font-weight: 700;
+    margin: 22px 0 6px;
+  }
+  .section-label:first-child { margin-top: 0; }
+  .group-task {
+    background: #fff8e6;
+    border: 1px solid #f0dca8;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+  }
+  .group-task .label { font-size: 14.5px; }
+  .group-task .signoff { display: block !important; color: var(--sub); font-size: 11.5px; margin-top: 4px;}
+  footer {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    color: var(--sub);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Paklijst — Berlijn weekend (FINAL)</h1>
+  <p>Vrijdag 14 t/m zondag 16 augustus 2026 · tik je eigen naam aan om af te tekenen</p>
+</header>
+
+<main>
+
+  <div class="urgent">
+    <b>Vanavond vóór 21:00 — Bents groepstaak</b>
+    Ontbijt smeren voor de hele groep: 2× bruin boterhamworst, 2× wit boterhamworst, 4× wit kaas, chocolade rijstwafels. Plus 4 waterflessen vullen. Klaar om 21:00 vanavond (13 augustus).
+    <div class="who-row" id="group-who"></div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <div id="panels"></div>
+
+</main>
+
+<footer>
+  Items zijn een standaard aanname voor een weekend van 3 dagen/2 nachten in augustus — pas gerust aan wat niet klopt. Aftekenen wordt niet bewaard na het herladen van de pagina (geen opslag), dus gebruik 'm binnen één sessie samen.
+</footer>
+
+<script>
+const people = [
+  { key: 'sjoerd', name: 'Sjoerd', initial: 'S' },
+  { key: 'tine', name: 'Tine', initial: 'T' },
+  { key: 'bent', name: 'Bent', initial: 'B' },
+  { key: 'lot', name: 'Lot', initial: 'L' },
+];
+
+const lists = {
+  sjoerd: {
+    'Documenten & geld': [
+      'ID / paspoort (verplicht voor Reichstag-bezoek zaterdag)',
+      'Portemonnee met contactloze bank-/creditcard',
+      'Treintickets + Reichstag-bevestiging in de app',
+    ],
+    'Kleding (3 dagen)': [
+      'T-shirts / overhemden',
+      'Broek + korte broek',
+      'Ondergoed & sokken',
+      'Vest of lichte regenjas',
+      'Wandelschoenen',
+      'Zonnebril',
+    ],
+    'Toiletspullen': [
+      'Tandenborstel & tandpasta',
+      'Deodorant',
+      'Scheerspullen',
+    ],
+    'Overig': [
+      'Telefoon + oplader',
+      'Powerbank',
+    ],
+  },
+  tine: {
+    'Documenten': [
+      'ID / paspoort (verplicht voor Reichstag-bezoek zaterdag)',
+      'DDR Museum tickets (jij hebt ze al)',
+      'Spionagemuseum tickets (jij hebt ze al)',
+    ],
+    'Kleding (3 dagen)': [
+      'Bovenkleding',
+      'Broek / rok',
+      'Ondergoed & sokken',
+      'Vest of lichte regenjas',
+      'Comfortabele loopschoenen',
+      'Zonnebril',
+    ],
+    'Toiletspullen': [
+      'Tandenborstel & tandpasta',
+      'Toilettas (basis)',
+    ],
+    'Overig': [
+      'Telefoon + oplader',
+      'Dagtasje voor onderweg',
+    ],
+  },
+  bent: {
+    'Groepstaak': [
+      'Ontbijt smeren + waterflessen vullen — klaar om 21:00 vanavond (zie bovenaan)',
+    ],
+    'Documenten': [
+      'ID-kaart (meenemen voor de zekerheid, ivm Reichstag-security)',
+    ],
+    'Kleding (3 dagen)': [
+      'T-shirts',
+      'Broek + korte broek',
+      'Ondergoed & sokken',
+      'Vest of lichte jas',
+      'Loopschoenen',
+    ],
+    'Wassen (geen douche)': [
+      'Tandenborstel & tandpasta',
+      'Washandje/deodorant',
+    ],
+    'Overig': [
+      'Telefoon + oplader',
+    ],
+  },
+  lot: {
+    'Documenten': [
+      'ID-kaart (meenemen voor de zekerheid)',
+    ],
+    'Kleding (3 dagen)': [
+      'T-shirts',
+      'Broek + korte broek',
+      'Ondergoed & sokken',
+      'Vest of lichte jas',
+      'Loopschoenen',
+    ],
+    'Wassen (geen douche)': [
+      'Tandenborstel & tandpasta',
+    ],
+    'Overig': [
+      'Telefoon (indien van toepassing)',
+      'Knuffel / iets voor onderweg in de trein',
+    ],
+  },
+};
+
+const tabsEl = document.getElementById('tabs');
+const panelsEl = document.getElementById('panels');
+
+function whoRow(itemId) {
+  const row = document.createElement('div');
+  row.className = 'who-row';
+  people.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'who-btn';
+    btn.textContent = p.initial;
+    btn.title = 'Afgetekend door ' + p.name;
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      toggleCheck(itemId, p);
+    };
+    btn.dataset.person = p.key;
+    row.appendChild(btn);
+  });
+  return row;
+}
+
+function toggleCheck(itemId, person) {
+  const li = document.getElementById(itemId);
+  const isSame = li.dataset.checkedBy === person.key;
+  if (isSame) {
+    li.classList.remove('done');
+    li.dataset.checkedBy = '';
+    li.querySelector('.signoff').textContent = '';
+  } else {
+    li.classList.add('done');
+    li.dataset.checkedBy = person.key;
+    li.querySelector('.signoff').textContent = '✓ afgetekend door ' + person.name;
+  }
+  li.querySelectorAll('.who-btn').forEach(b => {
+    b.classList.toggle('selected', b.dataset.person === li.dataset.checkedBy);
+  });
+  updateProgress();
+}
+
+let counter = 0;
+people.forEach((p, idx) => {
+  const tab = document.createElement('div');
+  tab.className = 'tab' + (idx === 0 ? ' active' : '');
+  tab.dataset.person = p.key;
+  tab.innerHTML = p.name + '<div class="progress" id="progress-' + p.key + '">0/0</div>';
+  tab.onclick = () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.person-panel').forEach(pnl => pnl.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + p.key).classList.add('active');
+  };
+  tabsEl.appendChild(tab);
+
+  const panel = document.createElement('div');
+  panel.className = 'person-panel' + (idx === 0 ? ' active' : '');
+  panel.id = 'panel-' + p.key;
+
+  const sections = lists[p.key];
+  Object.keys(sections).forEach(sectionName => {
+    const secLabel = document.createElement('div');
+    secLabel.className = 'section-label';
+    secLabel.textContent = sectionName;
+    panel.appendChild(secLabel);
+
+    const ul = document.createElement('ul');
+    ul.className = 'items';
+    sections[sectionName].forEach(text => {
+      counter++;
+      const itemId = 'item-' + counter;
+      const li = document.createElement('li');
+      li.className = 'item';
+      li.id = itemId;
+      li.dataset.person = p.key;
+      li.dataset.checkedBy = '';
+
+      const box = document.createElement('div');
+      box.className = 'box';
+      box.onclick = () => {
+        // default toggle uses this person's own tab identity
+        toggleCheck(itemId, p);
+      };
+      box.innerHTML = '&#10003;';
+
+      const body = document.createElement('div');
+      body.className = 'item-body';
+      const label = document.createElement('div');
+      label.className = 'label';
+      label.textContent = text;
+      const signoff = document.createElement('div');
+      signoff.className = 'signoff';
+      body.appendChild(label);
+      body.appendChild(signoff);
+      body.appendChild(whoRow(itemId));
+
+      li.appendChild(box);
+      li.appendChild(body);
+      ul.appendChild(li);
+    });
+    panel.appendChild(ul);
+  });
+
+  panelsEl.appendChild(panel);
+});
+
+function updateProgress() {
+  people.forEach(p => {
+    const panel = document.getElementById('panel-' + p.key);
+    const items = panel.querySelectorAll('.item');
+    const done = panel.querySelectorAll('.item.done').length;
+    document.getElementById('progress-' + p.key).textContent = done + '/' + items.length;
+  });
+}
+updateProgress();
+
+// group task who-row
+document.getElementById('group-who').appendChild((() => {
+  const row = document.createElement('div');
+  row.style.display = 'flex';
+  row.style.gap = '6px';
+  people.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'who-btn';
+    btn.style.borderColor = '#f0dca8';
+    btn.textContent = p.initial;
+    btn.title = 'Afgetekend door ' + p.name;
+    btn.onclick = () => {
+      document.querySelectorAll('#group-who .who-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+    row.appendChild(btn);
+  });
+  return row;
+})());
+</script>
+
+</body>
+</html>
