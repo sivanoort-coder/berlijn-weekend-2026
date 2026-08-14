@@ -3,20 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Berlijn weekend FINAL — Bent 15 jaar</title>
+<title>🎉 Berlijn weekend FINAL — Bent 15 jaar</title>
 <style>
   :root {
     --ink: #1a1a1a;
     --sub: #6b6b6b;
-    --line: #e2e2e2;
-    --accent: #b5342c;
-    --accent-soft: #fbeceb;
+    --line: #e6e2f7;
+    --accent: #7c3aed;
+    --accent-soft: #f2ebff;
     --ok: #2f6b3a;
     --ok-soft: #eaf3ec;
     --warn: #9a6a00;
     --warn-soft: #fdf3e0;
-    --bg: #fdfcfb;
+    --bg: #fbfaff;
     --card: #ffffff;
+    --vr: #4a6cf7;
+    --vr-soft: #eef1ff;
+    --za: #ff8a3d;
+    --za-soft: #fff2e6;
+    --zo: #16b381;
+    --zo-soft: #e8f9f2;
   }
   * { box-sizing: border-box; }
   body {
@@ -28,53 +34,91 @@
     padding-bottom: 60px;
   }
   header {
-    padding: 28px 20px 20px;
-    border-bottom: 1px solid var(--line);
-    background: var(--card);
+    padding: 34px 20px 28px;
+    background: linear-gradient(120deg, var(--vr) 0%, var(--accent) 45%, var(--za) 80%, var(--zo) 100%);
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(124,58,237,0.25);
+  }
+  header .emoji-row {
+    font-size: 26px;
+    margin-bottom: 6px;
+    letter-spacing: 4px;
   }
   header h1 {
-    margin: 0 0 4px;
-    font-size: 22px;
+    margin: 0 0 8px;
+    font-size: 26px;
     letter-spacing: -0.01em;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.15);
   }
   header p {
     margin: 0;
-    color: var(--sub);
+    color: rgba(255,255,255,0.92);
     font-size: 14px;
+  }
+  header .countdown {
+    display: inline-block;
+    margin-top: 14px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
   }
   main {
     max-width: 720px;
     margin: 0 auto;
-    padding: 20px 16px;
+    padding: 24px 16px;
   }
   .daynav {
     display: flex;
     gap: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
     flex-wrap: wrap;
   }
   .daynav a {
     text-decoration: none;
     font-size: 13px;
-    color: var(--ink);
-    background: var(--card);
-    border: 1px solid var(--line);
-    padding: 6px 12px;
+    font-weight: 700;
+    color: #fff;
+    padding: 8px 14px;
     border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   }
+  .daynav a.nav-vr { background: var(--vr); }
+  .daynav a.nav-za { background: var(--za); }
+  .daynav a.nav-zo { background: var(--zo); }
+  .daynav a.nav-info { background: var(--card); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
   .day-section {
-    margin-bottom: 40px;
+    margin-bottom: 44px;
+  }
+  .day-vrijdag { --accent-day: var(--vr); --accent-day-soft: var(--vr-soft); }
+  .day-zaterdag { --accent-day: var(--za); --accent-day-soft: var(--za-soft); }
+  .day-zondag { --accent-day: var(--zo); --accent-day-soft: var(--zo-soft); }
+  .day-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--accent-day-soft);
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+  }
+  .day-banner .day-emoji {
+    font-size: 30px;
+    line-height: 1;
   }
   .day-title {
     font-size: 18px;
-    font-weight: 700;
-    margin: 0 0 4px;
-    padding-top: 8px;
+    font-weight: 800;
+    margin: 0;
+    color: var(--accent-day);
   }
   .day-sub {
     color: var(--sub);
     font-size: 13px;
-    margin: 0 0 16px;
+    margin: 2px 0 0;
   }
   .stop {
     display: flex;
@@ -85,16 +129,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 14px;
+    width: 30px;
     flex-shrink: 0;
   }
   .stop .dot {
-    width: 12px;
-    height: 12px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    background: var(--accent);
-    margin-top: 4px;
+    background: var(--accent-day, var(--accent));
+    margin-top: 2px;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
   }
   .stop .rail {
     width: 2px;
@@ -104,16 +153,17 @@
   }
   .stop:last-child .rail { display: none; }
   .stop-body {
-    padding-bottom: 22px;
+    padding-bottom: 24px;
     flex: 1;
+    padding-top: 3px;
   }
   .time {
     font-weight: 700;
     font-size: 14px;
   }
   .stop-title {
-    font-weight: 600;
-    font-size: 15px;
+    font-weight: 700;
+    font-size: 15.5px;
     margin: 2px 0 2px;
   }
   .addr {
@@ -130,7 +180,7 @@
     gap: 14px;
   }
   .transfer .railcol {
-    width: 14px;
+    width: 30px;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -147,22 +197,23 @@
     align-items: center;
     gap: 6px;
   }
+  .transfer-icon { font-size: 15px; }
   .badge {
     display: inline-block;
     font-size: 11.5px;
-    font-weight: 600;
-    padding: 2px 8px;
+    font-weight: 700;
+    padding: 3px 9px;
     border-radius: 10px;
     margin-left: 6px;
   }
   .badge.ok { background: var(--ok-soft); color: var(--ok); }
   .badge.warn { background: var(--warn-soft); color: var(--warn); }
-  .badge.fixed { background: var(--accent-soft); color: var(--accent); }
+  .badge.fixed { background: var(--accent-day-soft, var(--accent-soft)); color: var(--accent-day, var(--accent)); }
   .flag {
     background: var(--warn-soft);
     border: 1px solid #f0dca8;
-    border-radius: 10px;
-    padding: 10px 14px;
+    border-radius: 14px;
+    padding: 12px 16px;
     font-size: 13.5px;
     margin: 10px 0 24px;
     color: #5c4300;
@@ -173,67 +224,83 @@
     border-collapse: collapse;
     font-size: 13px;
     margin-top: 8px;
+    background: var(--card);
+    border-radius: 14px;
+    overflow: hidden;
   }
   table.ref th, table.ref td {
     text-align: left;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-bottom: 1px solid var(--line);
     vertical-align: top;
   }
   table.ref th {
-    color: var(--sub);
-    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    font-weight: 700;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.02em;
   }
+  table.ref tr:nth-child(even) td { background: var(--accent-soft); }
   .open-q {
-    background: var(--accent-soft);
-    border: 1px solid #edc9c6;
-    border-radius: 10px;
-    padding: 14px 16px;
+    background: #fff3f0;
+    border: 1px solid #ffd7c9;
+    border-radius: 14px;
+    padding: 16px 18px;
     font-size: 13.5px;
     color: #7a2620;
   }
-  .open-q li { margin-bottom: 6px; }
+  .open-q li { margin-bottom: 8px; }
   .section-title {
-    font-size: 15px;
-    font-weight: 700;
-    margin: 32px 0 10px;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 36px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   footer {
     max-width: 720px;
     margin: 0 auto;
-    padding: 20px 16px 40px;
+    padding: 24px 16px 40px;
     color: var(--sub);
     font-size: 12px;
+    text-align: center;
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Berlijn — Bents verjaardagsweekend (FINAL)</h1>
-  <p>Vrijdag 14 t/m zondag 16 augustus 2026 · Sjoerd, Tine, Bent (wordt 15 op ma 17 aug), Lot</p>
+  <div class="emoji-row">🎉 🚆 🏙️ 🎂</div>
+  <h1>Berlijn — Bents verjaardagsweekend</h1>
+  <p>Vrijdag 14 t/m zondag 16 augustus 2026 · Sjoerd, Tine, Bent & Lot</p>
+  <div class="countdown">🥳 Bent wordt 15 op maandag 17 augustus!</div>
 </header>
 
 <main>
 
   <div class="daynav">
-    <a href="#vrijdag">Vrijdag 14/8</a>
-    <a href="#zaterdag">Zaterdag 15/8</a>
-    <a href="#zondag">Zondag 16/8</a>
-    <a href="#adressen">Adressen</a>
-    <a href="#open">Nog open</a>
+    <a class="nav-vr" href="#vrijdag">🚆 Vrijdag 14/8</a>
+    <a class="nav-za" href="#zaterdag">🏛️ Zaterdag 15/8</a>
+    <a class="nav-zo" href="#zondag">🕵️ Zondag 16/8</a>
+    <a class="nav-info" href="#adressen">📍 Adressen</a>
+    <a class="nav-info" href="#open">❗ Nog open</a>
   </div>
 
   <!-- VRIJDAG -->
-  <section class="day-section" id="vrijdag">
-    <div class="day-title">Vrijdag 14 augustus</div>
-    <div class="day-sub">Reisdag + eerste avond</div>
+  <section class="day-section day-vrijdag" id="vrijdag">
+    <div class="day-banner">
+      <div class="day-emoji">🚆</div>
+      <div>
+        <div class="day-title">Vrijdag 14 augustus</div>
+        <div class="day-sub">Reisdag + eerste avond</div>
+      </div>
+    </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">☀️</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">05:30 <span class="badge warn">aanname</span></div>
         <div class="stop-title">Opstaan & ochtendroutine thuis</div>
@@ -242,7 +309,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🚪</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">06:15 <span class="badge ok">vast</span></div>
         <div class="stop-title">De deur uit</div>
@@ -252,7 +319,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🚆</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">06:53 → 14:22 <span class="badge fixed">geboekt</span></div>
         <div class="stop-title">Trein Lelystad Centrum → Berlin Hbf</div>
@@ -263,11 +330,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 13-15 min · Bus M85 rechtstreeks (S+U Berlin Hbf → Lützowstr./Potsdamer Str., 13 min) óf trein naar S+U Potsdamer Platz (15 min) + laatste stukje lopen. Volledig lopen kan ook: 33 min (bron: Rome2Rio)</div>
+      <div class="transfer-body"><span class="transfer-icon">🚌</span> ≈ 13-15 min · Bus M85 rechtstreeks (S+U Berlin Hbf → Lützowstr./Potsdamer Str., 13 min) óf trein naar S+U Potsdamer Platz (15 min) + laatste stukje lopen. Volledig lopen kan ook: 33 min (bron: Rome2Rio)</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🏨</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">14:22 – 15:00 <span class="badge warn">buffer</span></div>
         <div class="stop-title">Inchecken Lulu Guldsmeden</div>
@@ -277,7 +344,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🧳</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">15:30 <span class="badge ok">vast</span></div>
         <div class="stop-title">Hotel uit</div>
@@ -287,7 +354,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🎡</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">15:35 – 16:40</div>
         <div class="stop-title">Panoramapunkt (Kollhoff-Tower)</div>
@@ -298,11 +365,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 3 min lopen naar Sony Center / Potsdamer Platz Arkaden</div>
+      <div class="transfer-body"><span class="transfer-icon">🚶</span> ≈ 3 min lopen naar Sony Center / Potsdamer Platz Arkaden</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🍦</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">16:45 – 17:15</div>
         <div class="stop-title">Vrije tijd — drankje/ijsje bij Sony Center</div>
@@ -312,11 +379,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 15-20 min lopen (1,0-1,2 km) via Ebertstraße, langs het Holocaust-monument, naar Brandenburger Tor — vlak, goed bewegwijzerd, geen kaartjes nodig. Bron: luftlinie.org + Rome2Rio.</div>
+      <div class="transfer-body"><span class="transfer-icon">🚶</span> ≈ 15-20 min lopen (1,0-1,2 km) via Ebertstraße, langs het Holocaust-monument, naar Brandenburger Tor — vlak, goed bewegwijzerd, geen kaartjes nodig. Bron: luftlinie.org + Rome2Rio.</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🕯️</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">17:35 – 19:10</div>
         <div class="stop-title">Denkmal für die ermordeten Juden Europas + rondlopen bij Brandenburger Tor</div>
@@ -325,7 +392,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div></div>
+      <div class="railcol"><div class="dot">🍽️</div></div>
       <div class="stop-body">
         <div class="time">~19:20 <span class="badge warn">geen reservering</span></div>
         <div class="stop-title">Avondeten bij Brandenburger Tor</div>
@@ -336,12 +403,17 @@
   </section>
 
   <!-- ZATERDAG -->
-  <section class="day-section" id="zaterdag">
-    <div class="day-title">Zaterdag 15 augustus</div>
-    <div class="day-sub">Drukste dag: Muur, DDR Museum, Reichstag, verjaardagsdiner</div>
+  <section class="day-section day-zaterdag" id="zaterdag">
+    <div class="day-banner">
+      <div class="day-emoji">🏛️</div>
+      <div>
+        <div class="day-title">Zaterdag 15 augustus</div>
+        <div class="day-sub">Drukste dag: Muur, DDR Museum, Reichstag, verjaardagsdiner</div>
+      </div>
+    </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">☀️</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">07:15 <span class="badge warn">aanname</span></div>
         <div class="stop-title">Opstaan & ochtendroutine (hotel)</div>
@@ -350,7 +422,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🧱</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">~09:30 – 12:00 <span class="badge ok">geen tijdslot</span></div>
         <div class="stop-title">Gedenkstätte Berliner Mauer (Bernauer Straße)</div>
@@ -360,7 +432,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🥪</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">12:00 – 13:05 <span class="badge warn">ter plekke</span></div>
         <div class="stop-title">Lunch bij Bernauer Straße</div>
@@ -370,11 +442,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 12 min met trein/tram of bus rechtstreeks — bron: Rome2Rio</div>
+      <div class="transfer-body"><span class="transfer-icon">🚋</span> ≈ 12 min met trein/tram of bus rechtstreeks — bron: Rome2Rio</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🏛️</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">13:30 <span class="badge fixed">geboekt door Tine</span></div>
         <div class="stop-title">DDR Museum</div>
@@ -385,11 +457,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 6 min lopen (540 m) van DDR Museum naar Hackescher Markt — bron: Rome2Rio</div>
+      <div class="transfer-body"><span class="transfer-icon">🚶</span> ≈ 6 min lopen (540 m) van DDR Museum naar Hackescher Markt — bron: Rome2Rio</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🛍️</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">~15:00 – 16:45</div>
         <div class="stop-title">Shoppen met Lot bij Hackescher Markt</div>
@@ -399,11 +471,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 11 min · S7 rechtstreeks (S Hackescher Markt → S Friedrichstraße) + kort lopen naar de Reichstag, geen overstap — bron: Rome2Rio. <b>Uiterlijk 17:05 vertrekken bij Hackescher Markt</b> om ruim op tijd (17:25-17:30) aan te komen.</div>
+      <div class="transfer-body"><span class="transfer-icon">🚇</span> ≈ 11 min · S7 rechtstreeks (S Hackescher Markt → S Friedrichstraße) + kort lopen naar de Reichstag, geen overstap — bron: Rome2Rio. <b>Uiterlijk 17:05 vertrekken bij Hackescher Markt</b> om ruim op tijd (17:25-17:30) aan te komen.</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🏰</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">17:45 <span class="badge fixed">geboekt</span></div>
         <div class="stop-title">Reichstagkuppel</div>
@@ -414,11 +486,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 11 min lopen (1 km) van de Reichstag naar Unter den Linden 39 — bron: Rome2Rio, klopt met eerdere schatting</div>
+      <div class="transfer-body"><span class="transfer-icon">🚶</span> ≈ 11 min lopen (1 km) van de Reichstag naar Unter den Linden 39 — bron: Rome2Rio, klopt met eerdere schatting</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div></div>
+      <div class="railcol"><div class="dot">🎂</div></div>
       <div class="stop-body">
         <div class="time">~19:15 <span class="badge warn">geen reservering</span></div>
         <div class="stop-title">Verjaardagsdiner — Calice d'Oro</div>
@@ -428,17 +500,22 @@
     </div>
 
     <div class="flag">
-      <b>Let op — krap moment:</b> als de Reichstagkuppel om 17:45 begint en ~1-1,25 uur duurt, eindigen jullie rond 18:45-19:00. Plus 10-12 min lopen betekent dat rond 19:00-19:15 bij het restaurant. Dat is precies op de rand van het voorgestelde diner-tijdstip. Omdat er niet gereserveerd is, is dat geen probleem — gewoon iets later beginnen als het uitloopt.
+      <b>⏰ Let op — krap moment:</b> als de Reichstagkuppel om 17:45 begint en ~1-1,25 uur duurt, eindigen jullie rond 18:45-19:00. Plus 10-12 min lopen betekent dat rond 19:00-19:15 bij het restaurant. Dat is precies op de rand van het voorgestelde diner-tijdstip. Omdat er niet gereserveerd is, is dat geen probleem — gewoon iets later beginnen als het uitloopt.
     </div>
   </section>
 
   <!-- ZONDAG -->
-  <section class="day-section" id="zondag">
-    <div class="day-title">Zondag 16 augustus</div>
-    <div class="day-sub">Spionagemuseum, uitchecken, terugreis</div>
+  <section class="day-section day-zondag" id="zondag">
+    <div class="day-banner">
+      <div class="day-emoji">🕵️</div>
+      <div>
+        <div class="day-title">Zondag 16 augustus</div>
+        <div class="day-sub">Spionagemuseum, uitchecken, terugreis</div>
+      </div>
+    </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🧳</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">07:30 <span class="badge warn">aanname</span></div>
         <div class="stop-title">Opstaan, douchen & inpakken (hotel)</div>
@@ -447,7 +524,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🚶</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">Vertrek hotel (volledig uitgecheckt, met alle koffers) uiterlijk 09:40</div>
         <div class="stop-title">Naar Deutsches Spionagemuseum</div>
@@ -456,7 +533,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🕵️‍♂️</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">10:00 <span class="badge fixed">geboekt door Tine — niet meer verschuiven</span></div>
         <div class="stop-title">Deutsches Spionagemuseum</div>
@@ -467,11 +544,11 @@
 
     <div class="transfer">
       <div class="railcol"><div class="rail"></div></div>
-      <div class="transfer-body">≈ 3 min · Rechtstreeks vanaf S+U Potsdamer Platz naar Berlin Hbf (elke 10 min een verbinding) — geen hotel-stop meer, koffers zijn al bij jullie</div>
+      <div class="transfer-body"><span class="transfer-icon">🚇</span> ≈ 3 min · Rechtstreeks vanaf S+U Potsdamer Platz naar Berlin Hbf (elke 10 min een verbinding) — geen hotel-stop meer, koffers zijn al bij jullie</div>
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div><div class="rail"></div></div>
+      <div class="railcol"><div class="dot">🥪</div><div class="rail"></div></div>
       <div class="stop-body">
         <div class="time">Op Berlin Hbf uiterlijk 12:15</div>
         <div class="stop-title">Lunch to-go + buffer voor de terugreis</div>
@@ -480,7 +557,7 @@
     </div>
 
     <div class="stop">
-      <div class="railcol"><div class="dot"></div></div>
+      <div class="railcol"><div class="dot">🚆</div></div>
       <div class="stop-body">
         <div class="time">12:47 → 20:06 <span class="badge fixed">geboekt</span></div>
         <div class="stop-title">Trein Berlin Hbf → Lelystad Centrum</div>
@@ -492,27 +569,27 @@
 
   <!-- ADRESSEN -->
   <section id="adressen">
-    <div class="section-title">Alle adressen op een rij</div>
+    <div class="section-title">📍 Alle adressen op een rij</div>
     <table class="ref">
       <tr><th>Locatie</th><th>Adres</th></tr>
-      <tr><td>Hotel — Lulu Guldsmeden</td><td>Potsdamer Straße 67, 10785 Berlin</td></tr>
-      <tr><td>Panoramapunkt (Kollhoff-Tower)</td><td>Potsdamer Platz 1, 10785 Berlin</td></tr>
-      <tr><td>Denkmal für die ermordeten Juden Europas</td><td>Cora-Berliner-Str. 1, 10117 Berlin</td></tr>
-      <tr><td>Berlin Hbf</td><td>Europaplatz 1, 10557 Berlin</td></tr>
-      <tr><td>Gedenkstätte Berliner Mauer</td><td>Bernauer Str. 111–119, 13355 Berlin</td></tr>
-      <tr><td>DDR Museum</td><td>Karl-Liebknecht-Str. 1, 10178 Berlin</td></tr>
-      <tr><td>Hackescher Markt</td><td>10178 Berlin (S-Bahnhof Hackescher Markt)</td></tr>
-      <tr><td>Reichstagkuppel</td><td>Platz der Republik 1, 11011 Berlin</td></tr>
-      <tr><td>Deutsches Spionagemuseum</td><td>Leipziger Platz 9, 10117 Berlin</td></tr>
-      <tr><td>Einstein Unter den Linden</td><td>Unter den Linden 42, 10117 Berlin</td></tr>
-      <tr><td>Gaffel Haus Berlin</td><td>Dorotheenstr. 65, 10117 Berlin</td></tr>
-      <tr><td>Calice d'Oro</td><td>Unter den Linden 39, 10117 Berlin</td></tr>
+      <tr><td>🏨 Hotel — Lulu Guldsmeden</td><td>Potsdamer Straße 67, 10785 Berlin</td></tr>
+      <tr><td>🎡 Panoramapunkt (Kollhoff-Tower)</td><td>Potsdamer Platz 1, 10785 Berlin</td></tr>
+      <tr><td>🕯️ Denkmal für die ermordeten Juden Europas</td><td>Cora-Berliner-Str. 1, 10117 Berlin</td></tr>
+      <tr><td>🚆 Berlin Hbf</td><td>Europaplatz 1, 10557 Berlin</td></tr>
+      <tr><td>🧱 Gedenkstätte Berliner Mauer</td><td>Bernauer Str. 111–119, 13355 Berlin</td></tr>
+      <tr><td>🏛️ DDR Museum</td><td>Karl-Liebknecht-Str. 1, 10178 Berlin</td></tr>
+      <tr><td>🛍️ Hackescher Markt</td><td>10178 Berlin (S-Bahnhof Hackescher Markt)</td></tr>
+      <tr><td>🏰 Reichstagkuppel</td><td>Platz der Republik 1, 11011 Berlin</td></tr>
+      <tr><td>🕵️ Deutsches Spionagemuseum</td><td>Leipziger Platz 9, 10117 Berlin</td></tr>
+      <tr><td>🍽️ Einstein Unter den Linden</td><td>Unter den Linden 42, 10117 Berlin</td></tr>
+      <tr><td>🍽️ Gaffel Haus Berlin</td><td>Dorotheenstr. 65, 10117 Berlin</td></tr>
+      <tr><td>🎂 Calice d'Oro</td><td>Unter den Linden 39, 10117 Berlin</td></tr>
     </table>
   </section>
 
   <!-- OPEN -->
   <section id="open">
-    <div class="section-title">Nog open</div>
+    <div class="section-title">❗ Nog open</div>
     <div class="open-q">
       <ul>
         <li>Koffers mee naar het Spionagemuseum: kon niet bevestigen of het museum grote bagage toelaat of een garderobe heeft (zie waarschuwing bij die stop). Even bellen of ter plekke checken, met een luggage-storage bij Potsdamer Platz als achtervang.</li>
@@ -526,7 +603,7 @@
 </main>
 
 <footer>
-  Opgesteld in Cowork op basis van de bevestigde boekingen (treinen, hotel, Reichstagkuppel) en Tine's reactie van 13 augustus. Reistijden zijn schattingen, geen live data.
+  🎈 Opgesteld in Cowork op basis van de bevestigde boekingen (treinen, hotel, Reichstagkuppel) en Tine's reactie van 13 augustus. Reistijden zijn schattingen, geen live data.
 </footer>
 
 </body>
