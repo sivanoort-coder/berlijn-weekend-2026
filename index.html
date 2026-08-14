@@ -153,9 +153,22 @@
   }
   .stop:last-child .rail { display: none; }
   .stop-body {
-    padding-bottom: 24px;
     flex: 1;
-    padding-top: 3px;
+    margin-bottom: 14px;
+    padding: 12px 16px 16px;
+    background: var(--accent-day-soft, var(--accent-soft));
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .stop-photo {
+    display: block;
+    width: 100%;
+    max-height: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 8px 0 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
   .time {
     font-weight: 700;
@@ -192,10 +205,14 @@
   .transfer-body {
     font-size: 13px;
     color: var(--sub);
-    padding: 6px 0 18px;
+    padding: 8px 12px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    background: #fff;
+    border: 1px dashed var(--accent-day, var(--line));
+    border-radius: 10px;
   }
   .transfer-icon { font-size: 15px; }
   .badge {
@@ -324,6 +341,7 @@
         <div class="time">🕡 06:53 → 14:22 <span class="badge fixed">🎟️ geboekt</span></div>
         <div class="stop-title">Trein Lelystad Centrum → Berlin Hbf</div>
         <div class="addr">🛤️ Via Zwolle, Hengelo, Osnabrück, Hamburg</div>
+        <img class="stop-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Berlin_Hauptbahnhof_%28Berlin_Central_Station%29.jpg/500px-Berlin_Hauptbahnhof_%28Berlin_Central_Station%29.jpg" alt="Berlin Hauptbahnhof" loading="lazy">
         <div class="note">⚠️ Krapste overstap: Hengelo, 13 min. Aankomst spoor 3.</div>
       </div>
     </div>
@@ -359,6 +377,7 @@
         <div class="time">🕞 15:35 – 16:40</div>
         <div class="stop-title">Panoramapunkt (Kollhoff-Tower)</div>
         <div class="addr">📍 Potsdamer Platz 1, 10785 Berlin · 🚶 5 min lopen vanaf hotel</div>
+        <img class="stop-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Potsdamer_Platz.JPG/500px-Potsdamer_Platz.JPG" alt="Potsdamer Platz" loading="lazy">
         <div class="note">🛗 Snelste lift van Europa + 🔭 uitkijkplatform over Berlijn, incl. expositie en café. 💶 Familiepakket (2 volw. + 2 kids) €19,50 totaal. Vrijdag open tot 19:00, laatste opgang 18:30 — geen tijdsdruk. 🔎 Bron: panoramapunkt.de.</div>
       </div>
     </div>
@@ -387,6 +406,7 @@
       <div class="stop-body">
         <div class="time">🕠 17:35 – 19:10</div>
         <div class="stop-title">Denkmal für die ermordeten Juden Europas + rondlopen bij Brandenburger Tor</div>
+        <img class="stop-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Berlin_Holocaust_Mahnmal%2C_Denkmal_f%C3%BCr_die_ermordeten_Juden_Europas.JPG/500px-Berlin_Holocaust_Mahnmal%2C_Denkmal_f%C3%BCr_die_ermordeten_Juden_Europas.JPG" alt="Denkmal für die ermordeten Juden Europas" loading="lazy">
         <div class="note">🕯️ Het Holocaust-monument is gratis en altijd open, 10-15 min de moeite waard (ook voor Bent op zijn leeftijd). Daarna nog 🚶 rondlopen tot etenstijd — jullie zijn dan al ter plekke voor het diner.</div>
       </div>
     </div>
@@ -427,6 +447,7 @@
         <div class="time">🕤 ~09:30 – 12:00 <span class="badge ok">🆓 geen tijdslot</span></div>
         <div class="stop-title">Gedenkstätte Berliner Mauer (Bernauer Straße)</div>
         <div class="addr">📍 Bernauer Str. 111–119, 13355 Berlin</div>
+        <img class="stop-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Berlin_Wall_Memorial_site_Bernauer_Stra%C3%9Fe_02.jpg/500px-Berlin_Wall_Memorial_site_Bernauer_Stra%C3%9Fe_02.jpg" alt="Gedenkstätte Berliner Mauer" loading="lazy">
         <div class="note">🆓 Buitenterrein gratis toegankelijk, geen boeking nodig. Nordbahnhof-uitgang komt rechtstreeks uit op Bernauer Straße, dus vanaf het station ben je er praktisch meteen (🔎 bron: officiële bezoekersgids).</div>
       </div>
     </div>
@@ -451,6 +472,7 @@
         <div class="time">🕜 13:30 <span class="badge fixed">🎟️ geboekt door Tine</span></div>
         <div class="stop-title">DDR Museum</div>
         <div class="addr">📍 Karl-Liebknecht-Str. 1, 10178 Berlin</div>
+        <img class="stop-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Trabant_Car_-_DDR_Museum_-_Eastern_Berlin_-_Germany.jpg/500px-Trabant_Car_-_DDR_Museum_-_Eastern_Berlin_-_Germany.jpg" alt="DDR Museum" loading="lazy">
         <div class="note">🎫 Dagticket, geen vast tijdslot — dus 13:30 is een richttijd, geen harde grens. Ticket heeft Tine, zij neemt ze mee. Reken op ~1,5 uur bezoek → richting 15:00 klaar.</div>
       </div>
     </div>
@@ -465,6 +487,7 @@
       <div class="stop-body">
         <div class="time">🕒 ~15:00 – 16:45</div>
         <div class="stop-title">Shoppen met Lot bij Hackescher Markt</div>
+        <img class="stop-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Berlin_-_S-Bahnhof_Hackescher_Markt.jpg/500px-Berlin_-_S-Bahnhof_Hackescher_Markt.jpg" alt="Hackescher Markt" loading="lazy">
         <div class="note">🛍️ Ruim de tijd voor Lot. De rest van de groep kan hier ook rondlopen (Hackesche Höfe, winkelstraatjes) of ergens iets drinken ☕.</div>
       </div>
     </div>
@@ -480,6 +503,7 @@
         <div class="time">🕕 17:45 <span class="badge fixed">🎟️ geboekt</span></div>
         <div class="stop-title">Reichstagkuppel</div>
         <div class="addr">📍 Platz der Republik 1, 11011 Berlin</div>
+        <img class="stop-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Reichstag_building_Berlin_view_from_west_before_sunset.jpg/500px-Reichstag_building_Berlin_view_from_west_before_sunset.jpg" alt="Reichstag" loading="lazy">
         <div class="note"><b>⏰ Kom om 17:25-17:30 aan</b> — standaard advies is 15-20 min voor je tijdslot ivm 🛂 security check en ID-controle (paspoort/ID meenemen). Bezoek incl. security duurt meestal ~1 tot 1,25 uur → verwacht klaar rond 18:45-19:00.</div>
       </div>
     </div>
